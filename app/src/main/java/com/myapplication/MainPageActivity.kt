@@ -1,5 +1,6 @@
 package com.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -26,27 +27,45 @@ class MainPageActivity : ComponentActivity() {
         val relativeLayoutChat = findViewById<CardView>(R.id.chat_btn)
 
         relativeLayoutTeam.setOnClickListener {
-            showToast("ahoy")
+            //showToast("ahoy")
+            val intent = Intent(this, SignUpActivity::class.java)// TeamActivity
+            startActivity(intent)
+            finish()
         }
 
         relativeLayoutLeague.setOnClickListener {
-            showToast("League")
+            //showToast("League")
+            val intent = Intent(this, SignUpActivity::class.java)// LeagueActivity
+            startActivity(intent)
+            finish()
         }
 
         relativeLayoutFriends.setOnClickListener {
-            showToast("Friends")
+            //showToast("Friends")
+            val intent = Intent(this, SignUpActivity::class.java)// FriendsActivity
+            startActivity(intent)
+            finish()
         }
 
         relativeLayoutProfile.setOnClickListener {
-            showToast("Profile")
+            //showToast("Profile")
+            val intent = Intent(this, SignUpActivity::class.java)// ProfileActivity
+            startActivity(intent)
+            finish()
         }
 
         relativeLayoutFields.setOnClickListener {
-            showToast("Fields")
+            //showToast("Fields")
+            val intent = Intent(this, SignUpActivity::class.java)// FieldsActivity
+            startActivity(intent)
+            finish()
         }
 
         relativeLayoutChat.setOnClickListener {
-            showToast("Chat")
+            //showToast("Chat")
+            val intent = Intent(this, SignUpActivity::class.java)// ChatActivity
+            startActivity(intent)
+            finish()
         }
         // ... set onClickListeners for other CardViews
     }
