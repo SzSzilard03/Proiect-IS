@@ -15,7 +15,8 @@ class Player {
         this.password = password
         this.email = email
     }
-    constructor(age:Int, name: String, username: String, password: String, email: String, position:String){
+    constructor(id: Int, age:Int, name: String, username: String, password: String, email: String, position:String){
+        this.id = id
         this.age = age
         this.name = name
         this.username = username

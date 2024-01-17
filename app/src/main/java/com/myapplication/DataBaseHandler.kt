@@ -50,20 +50,21 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         db?.execSQL(createPlayersTable)
         db?.execSQL(createTeamTable)
     }
-
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
     }
+
+    //player queries:
     fun createPlayer(player: Player){
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(PLAYER_NAME, player.name)
         cv.put(PLAYER_AGE, player.age)
         cv.put(PLAYER_USERNAME, player.username)
         cv.put(PLAYER_EMAIL, player.email)
         cv.put(PLAYER_PASSWORD, player.password)
         cv.put(PLAYER_POSITION, player.position)
-        var res = db.insert(PLAYERS_TABLE, null, cv)//id este autoincrementat
+        val res = db.insert(PLAYERS_TABLE, null, cv)//id este autoincrementat
         if(res.toInt() == -1)
             println("couldn't load db!")
         else println("successfully load db!")
@@ -81,13 +82,14 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         var player: Player? = null
         cursor.use {
             if (it.moveToFirst()) {
+                val id = it.getInt(it.getColumnIndex(PLAYER_ID))
                 val name = it.getString(it.getColumnIndex(PLAYER_NAME))
                 val age = it.getInt(it.getColumnIndex(PLAYER_AGE))
                 val pUsername = it.getString(it.getColumnIndex(PLAYER_USERNAME))
                 val password = it.getString(it.getColumnIndex(PLAYER_PASSWORD))
                 val email = it.getString(it.getColumnIndex(PLAYER_EMAIL))
                 val position = it.getString(it.getColumnIndex(PLAYER_POSITION))
-                player = Player(age, name, pUsername, password, email, position)
+                player = Player(id, age, name, pUsername, password, email, position)
             }
         }
         cursor.close()
@@ -172,7 +174,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         return playerId
     }
 
-    //team functions:
+    //team queries:
     fun createTeam(team: Team): Long {
         val db = this.writableDatabase
 
@@ -317,5 +319,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
             return false
         }
     }
+
+    //field queries:
 
 }
