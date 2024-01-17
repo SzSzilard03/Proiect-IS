@@ -10,6 +10,7 @@ val DATABASE_NAME = "my_database"
 
 //TABLES
 val PLAYERS_TABLE = "players"
+val TEAM_TABLE = "team"
 
 //COLUMNS
 val PLAYER_ID = "id"
@@ -20,9 +21,14 @@ val PLAYER_EMAIL = "email"
 val PLAYER_PASSWORD = "password"
 val PLAYER_POSITION = "position"
 
+val TEAM_ID = "team_id"
+val TEAM_NAME = "team_name"
+val TEAM_ADMIN_ID = "adminId"
+val TEAM_PLAYER_IDS = "player_ids"
+
 class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1){
 
-    override fun onCreate(p0: SQLiteDatabase?) {
+    override fun onCreate(db: SQLiteDatabase?) {
         val createPlayersTable =
             "CREATE TABLE $PLAYERS_TABLE (" +
                     "$PLAYER_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -32,13 +38,23 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
                     "$PLAYER_EMAIL VARCHAR(50), " +
                     "$PLAYER_PASSWORD VARCHAR(50), " +
                     "$PLAYER_POSITION VARCHAR(50))"
-        p0?.execSQL(createPlayersTable)
+
+        val createTeamTable =
+            "CREATE TABLE $TEAM_TABLE (" +
+                    "$TEAM_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "$TEAM_NAME VARCHAR(50), " +
+                    "$TEAM_ADMIN_ID INTEGER, " +
+                    "$TEAM_PLAYER_IDS VARCHAR(50), " +
+                    "FOREIGN KEY($TEAM_PLAYER_IDS) REFERENCES $PLAYERS_TABLE($PLAYER_ID))"
+
+        db?.execSQL(createPlayersTable)
+        db?.execSQL(createTeamTable)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
     }
-    fun insertData(player: Player){
+    fun createPlayer(player: Player){
         val db = this.writableDatabase
         var cv = ContentValues()
         cv.put(PLAYER_NAME, player.name)
@@ -49,7 +65,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         cv.put(PLAYER_POSITION, player.position)
         var res = db.insert(PLAYERS_TABLE, null, cv)//id este autoincrementat
         if(res.toInt() == -1)
-            println("couldnt load db!")
+            println("couldn't load db!")
         else println("successfully load db!")
     }
     @SuppressLint("Range")
@@ -126,5 +142,74 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         db.close()
 
         return password
+    }
+    @SuppressLint("Range")
+    private fun getPlayerIdsForTeam(db: SQLiteDatabase, teamId: Int): MutableList<Int> {
+        val existingPlayerIds = mutableListOf<Int>()
+
+        // Specify the columns to retrieve
+        val columns = arrayOf(TEAM_PLAYER_IDS)
+
+        // Specify the selection criteria (WHERE clause)
+        val selection = "$TEAM_ID = ?"
+
+        // Specify the values for the selection criteria
+        val selectionArgs = arrayOf(teamId.toString())
+
+        // Query the database to get the playerIds list for the specified teamId
+        val cursor = db.query(TEAM_TABLE, columns, selection, selectionArgs, null, null, null)
+
+        cursor.use {
+            if (it.moveToFirst()) {
+                val playerIdsString = it.getString(it.getColumnIndex(TEAM_PLAYER_IDS))
+                existingPlayerIds.addAll(playerIdsString.split(",").map { playerIdString -> playerIdString.toInt() })
+            }
+        }
+
+        return existingPlayerIds
+    }
+    fun addPlayerToTeam(teamId: Int, playerId: Int): Boolean {
+        val db = this.writableDatabase
+
+        // Check if the team with the provided teamId exists
+        if (teamExists(db, teamId)) {
+            // Retrieve the existing playerIds list
+            val existingPlayerIds = getPlayerIdsForTeam(db, teamId)
+
+            // Add the new playerId to the list
+            existingPlayerIds.add(playerId)
+
+            // Update the playerIds list in the team table
+            val contentValues = ContentValues().apply {
+                put(TEAM_PLAYER_IDS, existingPlayerIds.joinToString(","))
+            }
+
+            val whereClause = "$TEAM_ID = ?"
+            val whereArgs = arrayOf(teamId.toString())
+
+            // Update the team table with the modified playerIds list
+            val rowsAffected = db.update(TEAM_TABLE, contentValues, whereClause, whereArgs)
+
+            db.close()
+
+            // Return true if the update was successful
+            return rowsAffected > 0
+        } else {
+            db.close()
+            // Return false if the team with the provided teamId doesn't exist
+            return false
+        }
+    }
+    private fun teamExists(db: SQLiteDatabase, teamId: Int): Boolean {
+        val query = "SELECT COUNT(*) FROM $TEAM_TABLE WHERE $TEAM_ID = ?"
+        val cursor = db.rawQuery(query, arrayOf(teamId.toString()))
+
+        val exists = cursor.use {
+            it.moveToFirst()
+            it.getInt(0) > 0
+        }
+
+        cursor.close()
+        return exists
     }
 }
