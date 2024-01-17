@@ -2,7 +2,6 @@ package com.myapplication
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -22,26 +21,16 @@ class MainPageActivity : AppCompatActivity() {
 
         // Hooks
         drawerLayout = findViewById(R.id.drawer_layout)
-        navigationView = findViewById(R.id.nav_view)
+        //navigationView = findViewById(R.id.nav_view)
         textView = findViewById(R.id.textView)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar) // Set the toolbar as the action bar
 
         // Setting up the Navigation Drawer
-        navigationView.bringToFront()
-        val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
 
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            drawerLayout.closeDrawer(GravityCompat.START)
-            // Handle navigation view item clicks here.
-            true
-        }
-        navigationView.setCheckedItem(R.id.nav_home)
+
+
+
     }
 
     override fun onBackPressed() {
