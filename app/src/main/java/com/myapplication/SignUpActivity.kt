@@ -58,7 +58,7 @@ class SignUpActivity : ComponentActivity() {
                     showToast("Username is already taken. Please try again with a different username.")
                 } else {
                     // Username is not taken, proceed with registration
-                    db.insertData(temp)
+                    db.createPlayer(temp)
                     showToast("Welcome! Your account has been created.")
                     println(db.getAllPlayerNames())
 
