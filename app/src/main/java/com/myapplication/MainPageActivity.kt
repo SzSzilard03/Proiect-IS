@@ -5,6 +5,7 @@ import android.widget.RelativeLayout
 import androidx.activity.ComponentActivity
 
 
+
 class MainPageActivity : ComponentActivity() {
 
 
