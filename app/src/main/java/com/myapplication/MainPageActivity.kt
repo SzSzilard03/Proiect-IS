@@ -2,7 +2,6 @@ package com.myapplication
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,7 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 
-class MainPageActivity : ComponentActivity() {
+class MainPageActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -26,6 +25,7 @@ class MainPageActivity : ComponentActivity() {
         navigationView = findViewById(R.id.nav_view)
         textView = findViewById(R.id.textView)
         toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar) // Set the toolbar as the action bar
 
         // Setting up the Navigation Drawer
         navigationView.bringToFront()
@@ -37,6 +37,7 @@ class MainPageActivity : ComponentActivity() {
         toggle.syncState()
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
+            drawerLayout.closeDrawer(GravityCompat.START)
             // Handle navigation view item clicks here.
             true
         }
