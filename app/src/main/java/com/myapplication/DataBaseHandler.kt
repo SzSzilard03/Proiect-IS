@@ -74,4 +74,26 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         db.close()
         return namesList
     }
+    @SuppressLint("Range")
+    fun getAllPlayerUsernames(): List<String> {
+        val namesList = mutableListOf<String>()
+        val db = this.readableDatabase
+
+        // Specify the columns you want to retrieve
+        val columns = arrayOf(PLAYER_USERNAME)
+
+        // Query the database to get all names
+        val cursor = db.query(PLAYERS_TABLE, columns, null, null, null, null, null)
+
+        // Iterate through the cursor and add names to the list
+        cursor?.use {
+            while (it.moveToNext()) {
+                val playerName = it.getString(it.getColumnIndex(PLAYER_USERNAME))
+                namesList.add(playerName)
+            }
+        }
+        cursor?.close()
+        db.close()
+        return namesList
+    }
 }
