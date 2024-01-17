@@ -1,7 +1,7 @@
 package com.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AppCompatActivity
+
 class SignUpActivity :
     ComponentActivity() {
 
