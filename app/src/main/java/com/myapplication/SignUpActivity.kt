@@ -42,6 +42,9 @@ class SignUpActivity : ComponentActivity() {
             val isSignUpSuccessful = signUpInstance.signUpUser()
 
             if (isSignUpSuccessful) {
+                var db = DataBaseHandler(context)
+                val temp = Player(fullName, 20)
+                db.insertData(temp)
                 showToast("Welcome! Your account has been created.")
 
                 // Create an Intent to start the main activity
