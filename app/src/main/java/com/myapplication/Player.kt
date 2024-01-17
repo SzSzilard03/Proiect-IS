@@ -1,12 +1,18 @@
 package com.myapplication
 
 class Player {
-    var playerId : Int = 0
-    var age : Int = 18
+    var id : Int = 0
+    var age : Int = 0
     var name : String = ""
+    var username : String = ""
+    var password : String = ""
+    var email : String = ""
+    var position : String = ""
 
-    constructor(name:String, age:Int){
+    constructor(name: String, username: String, password: String, email: String){
         this.name = name
-        this.age = age
+        this.username = username
+        this.password = password
+        this.email = email
     }
 }
