@@ -41,18 +41,35 @@ class SignUpActivity : ComponentActivity() {
             val isSignUpSuccessful = signUpInstance.signUpUser()
 
             if (isSignUpSuccessful) {
-                //cand exista query, do one for user
+
                 var db = DataBaseHandler(context = this)
                 val temp = Player(fullName,username,password,email )
-                db.insertData(temp)
-                showToast("Welcome! Your account has been created.")
-                println(db.getAllPlayerNames())
-                // Create an Intent to start the main activity
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                val allUsers = db.getAllPlayerUsernames()
+                var usernameTaken = false
+                for (element in allUsers) {
+                    if (temp.username == element) {
+                        // Username is already taken
+                        usernameTaken = true
+                        break // Exit the loop since a match is found
+                    }
+                }
 
-                // Finish the current activity (SignUpActivity)
-                finish()
+                if (usernameTaken) {
+                    showToast("Username is already taken. Please try again with a different username.")
+                } else {
+                    // Username is not taken, proceed with registration
+                    db.insertData(temp)
+                    showToast("Welcome! Your account has been created.")
+                    println(db.getAllPlayerNames())
+
+                    // Create an Intent to start the main activity
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                    // Finish the current activity (SignUpActivity)
+                    finish()
+                }
+
             } else {
                 showToast("Registration failed. Please try again.")
             }

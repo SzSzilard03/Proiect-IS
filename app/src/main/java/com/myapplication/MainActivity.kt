@@ -24,9 +24,10 @@ class MainActivity : ComponentActivity() {
             finish()
         }
         logInButton.setOnClickListener {
-            var usernameString = txtUsername.toString()
-            var passString = txtPass.toString()
-            val logInInstance = LogIn(usernameString, passString)
+            var usernameString = txtUsername.text.toString()
+            var passString = txtPass.text.toString()
+            //var db = DataBaseHandler(context = this)
+            val logInInstance = LogIn(context = this, usernameString, passString)
             val isLogInSuccessful = logInInstance.signInUser()
             if(isLogInSuccessful)
             {
