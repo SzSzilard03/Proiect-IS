@@ -143,6 +143,29 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
 
         return password
     }
+    //team functions:
+    fun createTeam(team: Team): Long {
+        val db = this.writableDatabase
+
+        // Create a ContentValues object to store the data to be inserted
+        val contentValues = ContentValues().apply {
+            put(TEAM_NAME, team.teamName)
+            put(TEAM_ADMIN_ID, team.adminId)
+            put(TEAM_PLAYER_IDS, "") // Initial playerIds list is empty
+        }
+
+        // Insert the new team into the team table
+        val res = db.insert(TEAM_TABLE, null, contentValues)
+        db.close()
+        // Return the row ID of the newly inserted row, or -1 if an error occurred
+        if(res.toInt() == -1){
+            println("couldn't store team into db!")
+        }
+        else {
+            println("successfully stored team into db!")
+        }
+        return res
+    }
     @SuppressLint("Range")
     private fun getPlayerIdsForTeam(db: SQLiteDatabase, teamId: Int): MutableList<Int> {
         val existingPlayerIds = mutableListOf<Int>()
