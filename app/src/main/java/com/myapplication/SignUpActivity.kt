@@ -12,7 +12,7 @@ class SignUpActivity :
         setContentView(R.layout.sign_up)
 
         // Now you can continue with your logic, such as initializing views, handling user input, etc.
-        val signUpInstance = SignUp("exampleUser", "password123", "user@example.com")
+        val signUpInstance = SignUp("exampleUser", "password123", "user@example.com", "John Doe", "password123")
         val isSignUpSuccessful = signUpInstance.signUpUser()
         val backButton1 = findViewById<Button>(R.id.buttonBack1)
         val buttonSignUpAttempt = findViewById<Button>(R.id.buttonSignUpAttempt)
