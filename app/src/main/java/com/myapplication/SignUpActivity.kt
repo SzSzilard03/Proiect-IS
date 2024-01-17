@@ -44,10 +44,10 @@ class SignUpActivity : ComponentActivity() {
             if (isSignUpSuccessful) {
                 //cand exista query, do one for user
                 var db = DataBaseHandler(context = this)
-                val temp = Player(fullName, 20)
+                val temp = Player(fullName,username,password,email )
                 db.insertData(temp)
                 showToast("Welcome! Your account has been created.")
-
+                println(db.getAllPlayerNames())
                 // Create an Intent to start the main activity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

@@ -7,7 +7,7 @@ class Player {
     var username : String = ""
     var password : String = ""
     var email : String = ""
-    var position : String = ""
+    var position : String = "CM"
 
     constructor(name: String, username: String, password: String, email: String){
         this.name = name
