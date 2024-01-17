@@ -28,42 +28,42 @@ class MainPageActivity : ComponentActivity() {
 
         relativeLayoutTeam.setOnClickListener {
             //showToast("ahoy")
-            val intent = Intent(this, SignUpActivity::class.java)// TeamActivity
+            val intent = Intent(this, TeamActivity::class.java)// TeamActivity
             startActivity(intent)
             finish()
         }
 
         relativeLayoutLeague.setOnClickListener {
             //showToast("League")
-            val intent = Intent(this, SignUpActivity::class.java)// LeagueActivity
+            val intent = Intent(this, LeagueActivity::class.java)// LeagueActivity
             startActivity(intent)
             finish()
         }
 
         relativeLayoutFriends.setOnClickListener {
             //showToast("Friends")
-            val intent = Intent(this, SignUpActivity::class.java)// FriendsActivity
+            val intent = Intent(this, FriendsActivity::class.java)// FriendsActivity
             startActivity(intent)
             finish()
         }
 
         relativeLayoutProfile.setOnClickListener {
             //showToast("Profile")
-            val intent = Intent(this, SignUpActivity::class.java)// ProfileActivity
+            val intent = Intent(this, ProfileActivity::class.java)// ProfileActivity
             startActivity(intent)
             finish()
         }
 
         relativeLayoutFields.setOnClickListener {
             //showToast("Fields")
-            val intent = Intent(this, SignUpActivity::class.java)// FieldsActivity
+            val intent = Intent(this, FieldsActivity::class.java)// FieldsActivity
             startActivity(intent)
             finish()
         }
 
         relativeLayoutChat.setOnClickListener {
             //showToast("Chat")
-            val intent = Intent(this, SignUpActivity::class.java)// ChatActivity
+            val intent = Intent(this, ChatActivity::class.java)// ChatActivity
             startActivity(intent)
             finish()
         }
