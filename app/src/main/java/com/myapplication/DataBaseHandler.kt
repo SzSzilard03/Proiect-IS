@@ -317,4 +317,5 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
             return false
         }
     }
+
 }
