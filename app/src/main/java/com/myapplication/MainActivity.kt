@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.ComponentActivity
+import android.widget.Toast
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,11 +32,14 @@ class MainActivity : ComponentActivity() {
                 //go to home page
             }
             else{
-
+                showToast("Log in failed! Please enter correct password")
             }
         }
         else{
-            //display pop up error
+            showToast("Log in failed! Please enter valid username")
         }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
