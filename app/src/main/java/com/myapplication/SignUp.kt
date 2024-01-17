@@ -1,7 +1,7 @@
 package com.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-class SignUp(private val username: String, private val password: String, private val email: String) {
+class SignUp(private val username: String, private val password: String, private val email: String, private val name: String, private val confirm: String) {
 
     fun signUpUser(): Boolean {
         // Implement your logic for user registration here
@@ -13,7 +13,7 @@ class SignUp(private val username: String, private val password: String, private
         val isValidInput = validateInput()
         if (isValidInput) {
             // Perform user registration logic here (e.g., save to a database)
-            println("User registration successful for username: $username")
+            println("User registration successful for username: $username, Welcome $name")
             return true
         } else {
             println("Invalid input. Please check your details.")
@@ -26,7 +26,7 @@ class SignUp(private val username: String, private val password: String, private
         // For example, check if the username, password, and email meet certain criteria
 
         // Placeholder logic for demonstration purposes
-        return username.isNotBlank() && password.length >= 8 && email.contains("@")
+        return username.isNotBlank() && password.length >= 8 && confirm.equals(password) && email.contains("@")
     }
 }
 
