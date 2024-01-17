@@ -14,75 +14,100 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".35" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="355dp"
-        android:layout_marginBottom="680dp"
-        android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@color/app_theme"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@android:drawable/btn_dialog" />
-
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="visible"
         app:cardBackgroundColor="@color/app_theme_light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp"/>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="208dp"
-        android:layout_height="34dp"
+        android:id="@+id/textViewEmail"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
         android:background="@color/white"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="282dp"
+        android:text="Email"
+        android:textSize="144sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPassword"
+        app:layout_constraintEnd_toStartOf="@+id/textFieldEmail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/textFieldEmail"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:text="enter email"
+        app:layout_constraintBottom_toTopOf="@+id/textFieldPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewEmail"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/textFieldPassword"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="200dp"
+        android:background="@color/white"
+        android:password="true"
+        android:text="enter password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="213dp"
-        android:layout_height="33dp"
+        android:id="@+id/textViewPassword"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="200dp"
         android:background="@color/white"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="390dp"
+        android:text="Password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textFieldPassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSignUp"
         android:layout_width="104dp"
         android:layout_height="53dp"
-        android:text="Sign In"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="531dp"
+        android:layout_marginBottom="50dp"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLogIn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPassword"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonLogIn"
         android:layout_width="104dp"
         android:layout_height="55dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="50dp"
         android:text="Log in"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="531dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPassword"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

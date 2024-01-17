@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonSignUpAttempt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="531dp" />
+
+    <EditText
+        android:id="@+id/editTextNameCreate2"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="60dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewNameCreate2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <TextView
+        android:id="@+id/textViewNameCreate2"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:text="Name:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNameCreate2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <EditText
+        android:id="@+id/editTextNameCreate"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="60dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewNameCreate"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="239dp" />
+
+    <TextView
+        android:id="@+id/textViewNameCreate"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:text="Username:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNameCreate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="239dp" />
+
+    <EditText
+        android:id="@+id/editTextPassConf"
+        android:layout_width="240dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:password="true"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewPassConf"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="432dp" />
+
+    <TextView
+        android:id="@+id/textViewPassConf"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:text="Confirm:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPassConf"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="432dp" />
+
+    <EditText
+        android:id="@+id/editTextPassCreate"
+        android:layout_width="240dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:password="true"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewPassCreate"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <TextView
+        android:id="@+id/textViewPassCreate"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:text="Password:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPassCreate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <Button
+        android:id="@+id/buttonBack1"
+        android:layout_width="46dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="330dp"
+        android:text="back"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/editTextEmailCreate"
+        android:layout_width="240dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewEmailCreate"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="308dp" />
+
+    <TextView
+        android:id="@+id/textViewEmailCreate"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:text="Email:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextEmailCreate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="308dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
