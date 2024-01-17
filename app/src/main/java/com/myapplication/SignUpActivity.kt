@@ -2,13 +2,12 @@ package com.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 
-class SignUpActivity :
-    ComponentActivity() {
+class SignUpActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +42,7 @@ class SignUpActivity :
             val isSignUpSuccessful = signUpInstance.signUpUser()
 
             if (isSignUpSuccessful) {
-
-                println("Welcome! Your account has been created.")
+                showToast("Welcome! Your account has been created.")
 
                 // Create an Intent to start the main activity
                 val intent = Intent(this, MainActivity::class.java)
@@ -53,8 +51,12 @@ class SignUpActivity :
                 // Finish the current activity (SignUpActivity)
                 finish()
             } else {
-                println("Registration failed. Please try again.")
+                showToast("Registration failed. Please try again.")
             }
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
