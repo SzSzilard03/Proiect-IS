@@ -15,4 +15,12 @@ class Player {
         this.password = password
         this.email = email
     }
+    constructor(age:Int, name: String, username: String, password: String, email: String, position:String){
+        this.age = age
+        this.name = name
+        this.username = username
+        this.password = password
+        this.email = email
+        this.position = position
+    }
 }

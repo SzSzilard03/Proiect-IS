@@ -10,4 +10,10 @@ class Team {
         this.teamName = teamName
         this.adminId = adminId
     }
+    constructor(id:Int, teamName:String, adminId:Int, playersId:MutableList<Int>){
+        this.id = id
+        this.teamName = teamName
+        this.adminId = adminId
+        this.playerIds = playersId
+    }
 }
