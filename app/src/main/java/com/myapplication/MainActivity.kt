@@ -16,20 +16,23 @@ class MainActivity : ComponentActivity() {
         val logInButton = findViewById<Button>(R.id.buttonLogIn)
         val txtUsername = findViewById<EditText>(R.id.username)
         val txtPass = findViewById<EditText>(R.id.password)
-        var usernameString = txtUsername.toString()
-        var passString = txtPass.toString()
+
 
         signUpButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+            finish()
         }
         logInButton.setOnClickListener {
+            var usernameString = txtUsername.toString()
+            var passString = txtPass.toString()
             val logInInstance = LogIn(usernameString, passString)
             val isLogInSuccessful = logInInstance.signInUser()
             if(isLogInSuccessful)
             {
                 val intent = Intent(this, MainPageActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             else{
                 showToast("Log in failed! Please check your data")
