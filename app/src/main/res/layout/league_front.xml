@@ -72,7 +72,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/teambtn">
+                android:id="@+id/teamsbtn">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -85,7 +85,7 @@
                         android:layout_below="@id/bus"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Team"
+                        android:text="Teams"
                         android:textSize="24sp"
                         />
                     <ImageView
@@ -94,7 +94,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/groupic" />
+                        android:src="@drawable/teamzic" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -104,7 +104,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/league_btn">
+                android:id="@+id/ranking_btn">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -116,7 +116,7 @@
                         android:layout_below="@id/imageView3"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="League"
+                        android:text="Ranking"
                         android:textSize="24sp"
                         />
                     <ImageView
@@ -146,7 +146,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/profile_btn">
+                android:id="@+id/fixtures_btn">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -158,7 +158,7 @@
                         android:layout_below="@id/bus1"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Profile"
+                        android:text="Fixtures"
                         android:textSize="24sp"
                         />
                     <ImageView
@@ -167,40 +167,10 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/profileic" />
+                        android:src="@drawable/calendaric" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/chat_btn">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/train"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="Chat"
-                        android:textSize="24sp"
-                        />
-                    <ImageView
-                        android:id="@+id/train"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/chatic" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -218,7 +188,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/friends_btn">
+                android:id="@+id/back_btn">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -230,7 +200,7 @@
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Friends"
+                        android:text="Back"
                         android:textSize="24sp"
                         />
                     <ImageView
@@ -239,40 +209,10 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/baseline_person_search_24" />
+                        android:src="@drawable/backbutton" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/fields_btn">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/airplane"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="Fields"
-                        android:textSize="24sp"
-                        />
-                    <ImageView
-                        android:id="@+id/airplane"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/teren" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
