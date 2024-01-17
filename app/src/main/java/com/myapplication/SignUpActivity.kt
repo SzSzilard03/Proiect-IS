@@ -1,7 +1,10 @@
 package com.myapplication
+
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import androidx.activity.ComponentActivity
 
 class SignUpActivity :
@@ -11,11 +14,15 @@ class SignUpActivity :
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_up)
 
-        // Now you can continue with your logic, such as initializing views, handling user input, etc.
-        val signUpInstance = SignUp("exampleUser", "password123", "user@example.com", "John Doe", "password123")
-        val isSignUpSuccessful = signUpInstance.signUpUser()
+        val usernameEditText = findViewById<EditText>(R.id.editTextUserNameCreate)
+        val passwordEditText = findViewById<EditText>(R.id.editTextPassCreate)
+        val emailEditText = findViewById<EditText>(R.id.editTextEmailCreate)
+        val fullNameEditText = findViewById<EditText>(R.id.editTextNameCreate)
+        val confirmPasswordEditText = findViewById<EditText>(R.id.editTextPassConf)
+
         val backButton1 = findViewById<Button>(R.id.buttonBack1)
         val buttonSignUpAttempt = findViewById<Button>(R.id.buttonSignUpAttempt)
+
         backButton1.setOnClickListener {
             // Create an Intent to start the main activity
             val intent = Intent(this, MainActivity::class.java)
@@ -25,25 +32,29 @@ class SignUpActivity :
             finish()
         }
 
+        buttonSignUpAttempt.setOnClickListener {
+            val username = usernameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val email = emailEditText.text.toString()
+            val fullName = fullNameEditText.text.toString()
+            val confirmPassword = confirmPasswordEditText.text.toString()
 
-        if (isSignUpSuccessful) {
-            println("Welcome! Your account has been created.")
+            val signUpInstance = SignUp(username, password, email, fullName, confirmPassword)
+            val isSignUpSuccessful = signUpInstance.signUpUser()
 
-        } else {
-            println("Registration failed. Please try again.")
-        }
-        try {
-            buttonSignUpAttempt.setOnClickListener {
+            if (isSignUpSuccessful) {
+
+                println("Welcome! Your account has been created.")
+
                 // Create an Intent to start the main activity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
                 // Finish the current activity (SignUpActivity)
                 finish()
+            } else {
+                println("Registration failed. Please try again.")
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            // Log the exception or handle it appropriately
         }
     }
 }
