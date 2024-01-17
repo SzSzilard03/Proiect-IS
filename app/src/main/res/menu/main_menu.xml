@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/baseline_home_24"/>
+        <item
+            android:id="@+id/profile"
+            android:title="Profile"
+            android:icon="@drawable/profileic"/>
+        <item
+            android:id="@+id/team"
+            android:title="Teams"
+            android:icon="@drawable/groupic"/>
+        <item
+            android:id="@+id/league"
+            android:title="League"
+            android:icon="@drawable/leagueic"/>
+        <item
+            android:id="@+id/fields"
+            android:title="Fields"
+            android:icon="@drawable/teren"/>
+
+    </group>
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/calendar"
+            android:title="Calendar"
+            android:icon="@drawable/calendaric"/>
+        <item
+            android:id="@+id/logout"
+            android:title="Log out"
+            android:icon="@drawable/logout_icon"/>
+    </group>
+
+
+</menu>
