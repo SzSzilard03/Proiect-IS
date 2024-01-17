@@ -42,7 +42,7 @@ class SignUpActivity : ComponentActivity() {
             val isSignUpSuccessful = signUpInstance.signUpUser()
 
             if (isSignUpSuccessful) {
-                var db = DataBaseHandler(context)
+                var db = DataBaseHandler(context = this)
                 val temp = Player(fullName, 20)
                 db.insertData(temp)
                 showToast("Welcome! Your account has been created.")
