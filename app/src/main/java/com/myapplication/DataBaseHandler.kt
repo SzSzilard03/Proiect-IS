@@ -69,17 +69,44 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         else println("successfully load db!")
     }
     @SuppressLint("Range")
+    fun getPlayerDataByUsername(username: String): Player? {
+        val db = this.readableDatabase
+        val columns = arrayOf(PLAYER_ID, PLAYER_NAME, PLAYER_AGE, PLAYER_USERNAME, PLAYER_PASSWORD, PLAYER_EMAIL, PLAYER_POSITION)
+        // WHERE clause
+        val selection = "$PLAYER_USERNAME = ?"
+        val selectionArgs = arrayOf(username)
+
+        val cursor = db.query(PLAYERS_TABLE, columns, selection, selectionArgs, null, null, null)
+
+        var player: Player? = null
+        cursor.use {
+            if (it.moveToFirst()) {
+                val name = it.getString(it.getColumnIndex(PLAYER_NAME))
+                val age = it.getInt(it.getColumnIndex(PLAYER_AGE))
+                val pUsername = it.getString(it.getColumnIndex(PLAYER_USERNAME))
+                val password = it.getString(it.getColumnIndex(PLAYER_PASSWORD))
+                val email = it.getString(it.getColumnIndex(PLAYER_EMAIL))
+                val position = it.getString(it.getColumnIndex(PLAYER_POSITION))
+                player = Player(age, name, pUsername, password, email, position)
+            }
+        }
+        cursor.close()
+        db.close()
+        if(player == null){
+            println("couldn't retrieve player data!")
+        }
+        else{
+            println("retrieved player data!")
+        }
+        return player
+    }
+    @SuppressLint("Range")
     fun getAllPlayerNames(): List<String> {
         val namesList = mutableListOf<String>()
         val db = this.readableDatabase
-
-        // Specify the columns you want to retrieve
         val columns = arrayOf(PLAYER_NAME)
-
-        // Query the database to get all names
         val cursor = db.query(PLAYERS_TABLE, columns, null, null, null, null, null)
 
-        // Iterate through the cursor and add names to the list
         cursor?.use {
             while (it.moveToNext()) {
                 val playerName = it.getString(it.getColumnIndex(PLAYER_NAME))
@@ -94,14 +121,9 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
     fun getAllPlayerUsernames(): List<String> {
         val namesList = mutableListOf<String>()
         val db = this.readableDatabase
-
-        // Specify the columns you want to retrieve
         val columns = arrayOf(PLAYER_USERNAME)
-
-        // Query the database to get all names
         val cursor = db.query(PLAYERS_TABLE, columns, null, null, null, null, null)
 
-        // Iterate through the cursor and add names to the list
         cursor?.use {
             while (it.moveToNext()) {
                 val playerName = it.getString(it.getColumnIndex(PLAYER_USERNAME))
@@ -115,34 +137,41 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
     @SuppressLint("Range")
     fun getPasswordByUsername(username: String): String? {
         val db = this.readableDatabase
-
-        // Specify the columns you want to retrieve
         val columns = arrayOf(PLAYER_PASSWORD)
-
-        // Specify the selection criteria (WHERE clause)
         val selection = "$PLAYER_USERNAME = ?"
-
-        // Specify the values for the selection criteria
         val selectionArgs = arrayOf(username)
-
-        // Query the database to get the password based on the username
         val cursor = db.query(PLAYERS_TABLE, columns, selection, selectionArgs, null, null, null)
-
         var password: String? = null
 
-        // Retrieve the password from the cursor
         cursor?.use {
             if (it.moveToFirst()) {
                 password = it.getString(it.getColumnIndex(PLAYER_PASSWORD))
             }
         }
-
-        // Close the cursor and database
         cursor?.close()
         db.close()
 
         return password
     }
+    @SuppressLint("Range")
+    fun getPlayerIdByUsername(username: String): Int {
+        val db = this.readableDatabase
+        val columns = arrayOf(PLAYER_ID)
+        val selection = "$PLAYER_USERNAME = ?"
+        val selectionArgs = arrayOf(username)
+        val cursor = db.query(PLAYERS_TABLE, columns, selection, selectionArgs, null, null, null)
+        var playerId = -1 // Default value if the username is not found
+
+        cursor.use {
+            if (it.moveToFirst()) {
+                playerId = it.getInt(it.getColumnIndex(PLAYER_ID))
+            }
+        }
+        cursor.close()
+        db.close()
+        return playerId
+    }
+
     //team functions:
     fun createTeam(team: Team): Long {
         val db = this.writableDatabase
@@ -167,7 +196,40 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         return res
     }
     @SuppressLint("Range")
-    private fun getPlayerIdsForTeam(db: SQLiteDatabase, teamId: Int): MutableList<Int> {
+    fun retrieveTeamData(teamName: String): Team? {
+        val db = this.readableDatabase
+        val columns = arrayOf(TEAM_ID, TEAM_NAME, TEAM_ADMIN_ID, TEAM_PLAYER_IDS)
+        // WHERE clause
+        val selection = "$TEAM_NAME = ?"
+        val selectionArgs = arrayOf(teamName)
+
+        val cursor = db.query(TEAM_TABLE, columns, selection, selectionArgs, null, null, null)
+
+        var team: Team? = null
+
+        cursor.use {
+            if (it.moveToFirst()) {
+                val id = it.getInt(it.getColumnIndex(TEAM_ID))
+                val name = it.getString(it.getColumnIndex(TEAM_NAME))
+                val adminId = it.getInt(it.getColumnIndex(TEAM_ADMIN_ID))
+                val playerIdsString = it.getString(it.getColumnIndex(TEAM_PLAYER_IDS))
+
+                // Convert the playerIds string to a list of integers
+                val playerIds = playerIdsString.split(",").map { playerIdString -> playerIdString.toInt() }.toMutableList()
+                team = Team(id, name, adminId, playerIds)
+            }
+        }
+        cursor.close()
+        db.close()
+        if (team == null) {
+            println("Couldn't retrieve team data!")
+        } else {
+            println("Retrieved team data!")
+        }
+        return team
+    }
+    @SuppressLint("Range")
+    fun getPlayerIdsForTeam(db: SQLiteDatabase, teamId: Int): MutableList<Int> {
         val existingPlayerIds = mutableListOf<Int>()
 
         // Specify the columns to retrieve
@@ -235,4 +297,25 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         cursor.close()
         return exists
     }
+    fun deletePlayerFromTeam(teamId: Int, playerId: Int): Boolean {
+        val db = this.writableDatabase
+        if (teamExists(db, teamId)) {
+            val existingPlayerIds = getPlayerIdsForTeam(db, teamId)
+            existingPlayerIds.remove(playerId)
+            val contentValues = ContentValues().apply {
+                put(TEAM_PLAYER_IDS, existingPlayerIds.joinToString(","))
+            }
+            val whereClause = "$TEAM_ID = ?"
+            val whereArgs = arrayOf(teamId.toString())
+
+            val rowsAffected = db.update(TEAM_TABLE, contentValues, whereClause, whereArgs)
+
+            db.close()
+            return rowsAffected > 0
+        } else {
+            db.close()
+            return false
+        }
+    }
+
 }
