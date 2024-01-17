@@ -91,6 +91,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
                 val position = it.getString(it.getColumnIndex(PLAYER_POSITION))
                 player = Player(id, age, name, pUsername, password, email, position)
             }
+
         }
         cursor.close()
         db.close()

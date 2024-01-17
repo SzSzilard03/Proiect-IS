@@ -6,4 +6,5 @@ class Field {
     constructor(name:String){
         this.name = name
     }
+
 }
