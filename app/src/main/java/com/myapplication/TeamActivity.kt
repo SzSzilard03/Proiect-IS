@@ -9,6 +9,9 @@ import androidx.cardview.widget.CardView
 class TeamActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.team_page)
+        setContentView(R.layout.team_front)
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
