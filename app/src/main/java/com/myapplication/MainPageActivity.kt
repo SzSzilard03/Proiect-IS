@@ -1,7 +1,7 @@
 package com.myapplication
 
 import android.os.Bundle
-import android.widget.TextView
+import android.widget.RelativeLayout
 import androidx.activity.ComponentActivity
 
 
@@ -12,8 +12,8 @@ class MainPageActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainwindow)
 
-        val textViewTeam = findViewById<TextView>(R.id.Team)
-        val textViewLeague = findViewById<TextView>(R.id.League)
+        val textViewTeam = findViewById<RelativeLayout>(R.id.teambtn)
+        val textViewLeague = findViewById<RelativeLayout>(R.id.league_btn)
         // ... similarly for other CardViews
 
         textViewTeam.setOnClickListener {
@@ -26,6 +26,8 @@ class MainPageActivity : ComponentActivity() {
 
         // ... set onClickListeners for other CardViews
     }
-    }
+
+
+}
 
 
