@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-
+import android.content.Context
 class SignUpActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +42,7 @@ class SignUpActivity : ComponentActivity() {
             val isSignUpSuccessful = signUpInstance.signUpUser()
 
             if (isSignUpSuccessful) {
+                //cand exista query, do one for user
                 var db = DataBaseHandler(context = this)
                 val temp = Player(fullName, 20)
                 db.insertData(temp)

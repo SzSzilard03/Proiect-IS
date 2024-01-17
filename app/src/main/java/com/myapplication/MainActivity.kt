@@ -24,20 +24,19 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         }
         logInButton.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
-        if(usernameString == "ya"){
-            if(passString == "Luis") {
-                //go to home page
+            val logInInstance = LogIn(usernameString, passString)
+            val isLogInSuccessful = logInInstance.signInUser()
+            if(isLogInSuccessful)
+            {
+                val intent = Intent(this, MainPageActivity::class.java)
+                startActivity(intent)
             }
             else{
-                showToast("Log in failed! Please enter correct password")
+                showToast("Log in failed! Please check your data")
             }
+
         }
-        else{
-            showToast("Log in failed! Please enter valid username")
-        }
+
     }
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
