@@ -27,7 +27,7 @@ class LeagueActivity : ComponentActivity() {
         val rankingBtn = findViewById<CardView>(R.id.ranking_btn)
         rankingBtn.setOnClickListener {
             //showToast("ahoy")
-            val intent = Intent(this, MainPageActivity::class.java)// RankingActivity
+            val intent = Intent(this, TeamsActivity::class.java)// RankingActivity
             startActivity(intent)
             finish()
         }

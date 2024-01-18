@@ -34,7 +34,7 @@ class TeamActivity : ComponentActivity() {
         val fixturesBtn = findViewById<CardView>(R.id.fixtures_btn)
         fixturesBtn.setOnClickListener {
             //showToast("ahoy")
-            val intent = Intent(this, MainPageActivity::class.java)// MembersActivity
+            val intent = Intent(this, MembersActivity::class.java)// MembersActivity
             startActivity(intent)
             finish()
         }
