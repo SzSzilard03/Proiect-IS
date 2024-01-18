@@ -25,6 +25,7 @@ class MembersActivity : ComponentActivity() {
         if(temp.size<5)
         {
             db.populatePlayersTable()
+
         }
         val concatenatedString = temp.joinToString(separator = "\n")
         textSet.text = concatenatedString

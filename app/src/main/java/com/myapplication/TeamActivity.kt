@@ -44,6 +44,7 @@ class TeamActivity : ComponentActivity() {
             val intent = Intent(this, MembersActivity::class.java)// FixturesActivity
             startActivity(intent)
             finish()
+
         }
 
     }

@@ -131,6 +131,7 @@
             android:name=".MembersActivity"
             android:exported="true"
             android:label="@string/app_name"
+
             android:theme="@style/Theme.ELeague">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
