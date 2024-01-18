@@ -331,6 +331,55 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
             return false
         }
     }
+    fun populateTeamsTable() {
+        val teamNames = listOf(
+            "Arsenal",
+            "Aston Villa",
+            "Brentford",
+            "Brighton & Hove Albion",
+            "Burnley",
+            "Chelsea",
+            "Crystal Palace",
+            "Everton",
+            "Leeds United",
+            "Leicester City",
+            "Liverpool",
+            "Manchester City",
+            "Manchester United",
+            "Newcastle United",
+            "Norwich City",
+            "Southampton",
+            "Tottenham Hotspur",
+            "Watford",
+            "West Ham United",
+            "Wolverhampton Wanderers"
+        )
+        val db = this.writableDatabase
+        for (teamName in teamNames) {
+            val contentValues = ContentValues().apply {
+                put(TEAM_NAME, teamName)
+                // You can add more fields if needed, like ADMIN_ID or TEAM_PLAYER_IDS
+            }
+            db.insert(TEAM_TABLE, null, contentValues)
+        }
+        db.close()
+    }
+    @SuppressLint("Range")
+    fun getAllTeamNames(): List<String> {
+        val db = this.readableDatabase
+        val columns = arrayOf(TEAM_NAME)
+        val cursor = db.query(TEAM_TABLE, columns, null, null, null, null, null)
+        val teamNames = mutableListOf<String>()
+        cursor.use {
+            while (it.moveToNext()) {
+                val teamName = it.getString(it.getColumnIndex(TEAM_NAME))
+                teamNames.add(teamName)
+            }
+        }
+        cursor.close()
+        db.close()
+        return teamNames
+    }
 
     //field queries:
     fun populateFieldTable() {
