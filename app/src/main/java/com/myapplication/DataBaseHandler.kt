@@ -1,5 +1,6 @@
 package com.myapplication
 
+import kotlin.random.Random
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
@@ -185,6 +186,93 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         db.close()
         return playerId
     }
+    fun populatePlayersTable() {
+        val playerNames = listOf(
+            "Kevin De Bruyne",
+            "Bruno Fernandes",
+            "Mohamed Salah",
+            "Harry Kane",
+            "Jack Grealish",
+            "Ruben Dias",
+            "N'Golo Kanté",
+            "Son Heung-min",
+            "Cristiano Ronaldo",
+            "Mason Mount",
+            "Virgil van Dijk",
+            "Bruno Guimarães",
+            "Bukayo Saka",
+            "Trent Alexander-Arnold",
+            "Rúben Neves",
+            "Declan Rice",
+            "Jordan Henderson",
+            "Phil Foden",
+            "Marcus Rashford",
+            "Romelu Lukaku",
+            "Diogo Jota",
+            "Wilfried Zaha",
+            "Edinson Cavani",
+            "Raheem Sterling",
+            "Riyad Mahrez",
+            "Paul Pogba",
+            "Kai Havertz",
+            "James Ward-Prowse",
+            "Jamie Vardy",
+            "Dominic Calvert-Lewin",
+            "Thiago Alcântara",
+            "Aaron Wan-Bissaka",
+            "Sadio Mané",
+            "Ferran Torres",
+            "Andrew Robertson",
+            "João Cancelo",
+            "Kalvin Phillips",
+            "Rodrigo",
+            "Michail Antonio",
+            "Allan Saint-Maximin",
+            "Ollie Watkins",
+            "Bertrand Traoré",
+            "Adama Traoré",
+            "Stuart Dallas",
+            "Danny Ings",
+            "Ben White",
+            "John McGinn",
+            "Neal Maupay",
+            "Conor Gallagher",
+            "Jarrod Bowen"
+        )
+        val db = this.writableDatabase
+        for (playerName in playerNames) {
+            val age = Random.nextInt(18, 35) // Generate random age between 18 and 35
+            val position = if (Random.nextBoolean()) "Forward" else "Midfielder" // Randomly assign a position
+            val contentValues = ContentValues().apply {
+                put(PLAYER_NAME, playerName)
+                put(PLAYER_AGE, age)
+                put(PLAYER_POSITION, position)
+            }
+            db.insert(PLAYERS_TABLE, null, contentValues)
+        }
+        db.close()
+    }
+    @SuppressLint("Range")
+    fun getPlayerDetails(): List<String> {
+        val db = this.readableDatabase
+        val columns = arrayOf(PLAYER_NAME, PLAYER_AGE, PLAYER_POSITION)
+        val cursor = db.query(PLAYERS_TABLE, columns, null, null, null, null, null)
+        val playerDetails = mutableListOf<String>()
+        cursor.use {
+            while (it.moveToNext()) {
+                val playerName = it.getString(it.getColumnIndex(PLAYER_NAME))
+                val age = it.getInt(it.getColumnIndex(PLAYER_AGE))
+                val position = it.getString(it.getColumnIndex(PLAYER_POSITION))
+                val playerDetailString = "$playerName, Age: $age, Position: $position"
+                playerDetails.add(playerDetailString)
+            }
+        }
+        cursor.close()
+        db.close()
+        return playerDetails
+    }
+
+
 
     //team queries:
     fun createTeam(team: Team): Long {
