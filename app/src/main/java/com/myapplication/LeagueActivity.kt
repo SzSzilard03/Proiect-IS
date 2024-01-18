@@ -34,7 +34,7 @@ class LeagueActivity : ComponentActivity() {
         val TeamsBtn = findViewById<CardView>(R.id.teamsbtn)
         TeamsBtn.setOnClickListener {
             //showToast("ahoy")
-            val intent = Intent(this, MainPageActivity::class.java)// TeamsActivity
+            val intent = Intent(this, TeamsActivity::class.java)// TeamsActivity
             startActivity(intent)
             finish()
         }
