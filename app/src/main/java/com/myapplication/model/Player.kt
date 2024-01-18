@@ -2,7 +2,7 @@ package com.myapplication.model
 
 class Player {
     var id : Int = 0
-    var age : Int = 0
+    var age : Int = 20
     var name : String = ""
     var username : String = ""
     var password : String = ""

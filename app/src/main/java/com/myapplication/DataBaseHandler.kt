@@ -247,6 +247,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
                 put(PLAYER_NAME, playerName)
                 put(PLAYER_AGE, age)
                 put(PLAYER_POSITION, position)
+                put(PLAYER_USERNAME, "npc")
             }
             db.insert(PLAYERS_TABLE, null, contentValues)
         }
