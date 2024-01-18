@@ -14,7 +14,6 @@ class Team {
         this.id = id
         this.teamName = teamName
         this.adminId = adminId
-
         this.playerIds = playersId
     }
 }

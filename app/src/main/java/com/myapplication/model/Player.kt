@@ -23,6 +23,5 @@ class Player {
         this.password = password
         this.email = email
         this.position = position
-
     }
 }

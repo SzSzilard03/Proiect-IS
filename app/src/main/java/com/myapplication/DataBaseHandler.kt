@@ -54,8 +54,12 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
                     "$TEAM_PLAYER_IDS VARCHAR(50), " +
                     "FOREIGN KEY($TEAM_PLAYER_IDS) REFERENCES $PLAYERS_TABLE($PLAYER_ID))"
 
+        val createFieldTable =
+            "CREATE TABLE $FIELD_TABLE ($FIELD_ID INTEGER PRIMARY KEY AUTOINCREMENT, $FIELD_NAME VARCHAR(256))"
+
         db?.execSQL(createPlayersTable)
         db?.execSQL(createTeamTable)
+        db?.execSQL(createFieldTable)
     }
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
@@ -329,5 +333,44 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
     }
 
     //field queries:
-
+    fun populateFieldTable() {
+        val fieldNames = listOf(
+            "Cluj Arena",
+            "CFR Cluj Training Ground",
+            "University Sports Complex",
+            "Gheorgheni Sports Park",
+            "Check Local Football Clubs",
+            "Municipal Sports Complex",
+            "Stadiumul Victoria",
+            "Centrul Sportiv Transilvania",
+            "Arena Apulum",
+            "Rapid Cluj",
+            "Energia Park",
+            "Olympic Field"
+        )
+        val db = this.writableDatabase
+        for (fieldName in fieldNames) {
+            val contentValues = ContentValues().apply {
+                put(FIELD_NAME, fieldName)
+            }
+            db.insert(FIELD_TABLE, null, contentValues)
+        }
+        db.close()
+    }
+    @SuppressLint("Range")
+    fun getAllFieldNames(): List<String> {
+        val db = this.readableDatabase
+        val columns = arrayOf(FIELD_NAME)
+        val cursor = db.query(FIELD_TABLE, columns, null, null, null, null, null)
+        val fieldNames = mutableListOf<String>()
+        cursor.use {
+            while (it.moveToNext()) {
+                val fieldName = it.getString(it.getColumnIndex(FIELD_NAME))
+                fieldNames.add(fieldName)
+            }
+        }
+        cursor.close()
+        db.close()
+        return fieldNames
+    }
 }
