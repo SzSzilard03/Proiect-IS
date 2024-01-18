@@ -331,7 +331,8 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         return team
     }
     @SuppressLint("Range")
-    fun getPlayerIdsForTeam(db: SQLiteDatabase, teamId: Int): MutableList<Int> {
+    fun getPlayerIdsForTeam(teamId: Int): MutableList<Int> {
+        val db = this.readableDatabase
         val existingPlayerIds = mutableListOf<Int>()
 
         // Specify the columns to retrieve
@@ -361,7 +362,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         // Check if the team with the provided teamId exists
         if (teamExists(db, teamId)) {
             // Retrieve the existing playerIds list
-            val existingPlayerIds = getPlayerIdsForTeam(db, teamId)
+            val existingPlayerIds = getPlayerIdsForTeam(teamId)
 
             // Add the new playerId to the list
             existingPlayerIds.add(playerId)
@@ -402,7 +403,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
     fun deletePlayerFromTeam(teamId: Int, playerId: Int): Boolean {
         val db = this.writableDatabase
         if (teamExists(db, teamId)) {
-            val existingPlayerIds = getPlayerIdsForTeam(db, teamId)
+            val existingPlayerIds = getPlayerIdsForTeam(teamId)
             existingPlayerIds.remove(playerId)
             val contentValues = ContentValues().apply {
                 put(TEAM_PLAYER_IDS, existingPlayerIds.joinToString(","))
@@ -446,7 +447,6 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         for (teamName in teamNames) {
             val contentValues = ContentValues().apply {
                 put(TEAM_NAME, teamName)
-                // You can add more fields if needed, like ADMIN_ID or TEAM_PLAYER_IDS
             }
             db.insert(TEAM_TABLE, null, contentValues)
         }
