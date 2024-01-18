@@ -15,6 +15,7 @@ val DATABASE_NAME = "my_database"
 val PLAYERS_TABLE = "players"
 val TEAM_TABLE = "team"
 val FIELD_TABLE = "field"
+val CALENDAR_TABLE = "calendar"
 
 //COLUMNS
 val PLAYER_ID = "id"
@@ -32,6 +33,15 @@ val TEAM_PLAYER_IDS = "player_ids"
 
 val FIELD_ID = "id"
 val FIELD_NAME = "name"
+
+val USER_ID = "user_id"
+val CALENDAR_ID = "calendar_id"
+val CALENDAR_FIXTURE_ID = "fixture_id"
+val CALENDAR_FIXTURE_TEAM1_ID = "team1_id"
+val CALENDAR_FIXTURE_TEAM2_ID = "team2_id"
+val CALENDAR_FIXTURE_DATE_DAY = "date_day"
+val CALENDAR_FIXTURE_DATE_MONTH = "date_month"
+val CALENDAR_FIXTURE_DATE_YEAR = "date_year"
 
 
 class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1){
@@ -58,9 +68,28 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         val createFieldTable =
             "CREATE TABLE $FIELD_TABLE ($FIELD_ID INTEGER PRIMARY KEY AUTOINCREMENT, $FIELD_NAME VARCHAR(256))"
 
+        val createCalendarTable =
+            "CREATE TABLE $CALENDAR_TABLE (" +
+                    "$CALENDAR_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "$USER_ID INTEGER," +
+                    "$CALENDAR_FIXTURE_ID INTEGER," +
+                    "$CALENDAR_FIXTURE_TEAM1_ID INTEGER," +
+                    "$CALENDAR_FIXTURE_TEAM2_ID INTEGER," +
+                    "$CALENDAR_FIXTURE_DATE_DAY INTEGER," +
+                    "$CALENDAR_FIXTURE_DATE_MONTH INTEGER," +
+                    "$CALENDAR_FIXTURE_DATE_YEAR INTEGER," +
+                    "FOREIGN KEY($USER_ID) REFERENCES $PLAYERS_TABLE($USER_ID)," +
+                    "FOREIGN KEY($CALENDAR_FIXTURE_TEAM1_ID) REFERENCES $TEAM_TABLE($TEAM_ID)," +
+                    "FOREIGN KEY($CALENDAR_FIXTURE_TEAM2_ID) REFERENCES $TEAM_TABLE($TEAM_ID)," +
+                    "FOREIGN KEY($CALENDAR_FIXTURE_DATE_DAY) REFERENCES $CALENDAR_TABLE($CALENDAR_FIXTURE_DATE_DAY)," +
+                    "FOREIGN KEY($CALENDAR_FIXTURE_DATE_MONTH) REFERENCES $CALENDAR_TABLE($CALENDAR_FIXTURE_DATE_MONTH)," +
+                    "FOREIGN KEY($CALENDAR_FIXTURE_DATE_YEAR) REFERENCES $CALENDAR_TABLE($CALENDAR_FIXTURE_DATE_YEAR)" +
+                    ")"
+
         db?.execSQL(createPlayersTable)
         db?.execSQL(createTeamTable)
         db?.execSQL(createFieldTable)
+        db?.execSQL(createCalendarTable)
     }
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
@@ -511,4 +540,6 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
         db.close()
         return fieldNames
     }
+
+    //calendar queries:
 }
