@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView
 
 class FriendsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val usernameEditText = findViewById<EditText>(R.id.search)
+        val usernameEditText = findViewById<EditText>(R.id.editTextData)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.friends_front)
         val backBtn = findViewById<CardView>(R.id.back_btn)
