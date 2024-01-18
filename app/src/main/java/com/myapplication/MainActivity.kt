@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.myapplication.model.LogIn
 
 
 class MainActivity : ComponentActivity() {

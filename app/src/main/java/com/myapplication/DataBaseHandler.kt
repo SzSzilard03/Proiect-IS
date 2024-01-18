@@ -5,12 +5,15 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.myapplication.model.Player
+import com.myapplication.model.Team
 
 val DATABASE_NAME = "my_database"
 
 //TABLES
 val PLAYERS_TABLE = "players"
 val TEAM_TABLE = "team"
+val FIELD_TABLE = "field"
 
 //COLUMNS
 val PLAYER_ID = "id"
@@ -25,6 +28,10 @@ val TEAM_ID = "team_id"
 val TEAM_NAME = "team_name"
 val TEAM_ADMIN_ID = "adminId"
 val TEAM_PLAYER_IDS = "player_ids"
+
+val FIELD_ID = "id"
+val FIELD_NAME = "name"
+
 
 class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1){
 

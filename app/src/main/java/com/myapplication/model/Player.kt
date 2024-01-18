@@ -1,4 +1,4 @@
-package com.myapplication
+package com.myapplication.model
 
 class Player {
     var id : Int = 0

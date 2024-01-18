@@ -1,6 +1,5 @@
-package com.myapplication
-import android.os.Bundle
-import androidx.activity.ComponentActivity
+package com.myapplication.model
+
 class SignUp(private val username: String, private val password: String, private val email: String, private val name: String, private val confirm: String) {
 
     fun signUpUser(): Boolean {

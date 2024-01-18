@@ -1,7 +1,8 @@
-package com.myapplication
+package com.myapplication.model
 
 import android.content.Context
 import android.widget.Toast
+import com.myapplication.DataBaseHandler
 
 class LogIn(private val context: Context, private val username: String, private val password: String) {
     private var db = DataBaseHandler(context = context)
