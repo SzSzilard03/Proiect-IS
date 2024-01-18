@@ -17,6 +17,20 @@ class ChatActivity : ComponentActivity() {
             startActivity(intent)
             finish()
         }
+        val teamChat = findViewById<CardView>(R.id.team_btn)
+        teamChat.setOnClickListener {
+            //showToast("ahoy")
+            val intent = Intent(this, MainPageActivity::class.java)// TeamChatActivity
+            startActivity(intent)
+            finish()
+        }
+        val friends_btn = findViewById<CardView>(R.id.friends_btn)
+        friends_btn.setOnClickListener {
+            //showToast("ahoy")
+            val intent = Intent(this, MainPageActivity::class.java)// FriendsChatActivity
+            startActivity(intent)
+            finish()
+        }
     }
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
