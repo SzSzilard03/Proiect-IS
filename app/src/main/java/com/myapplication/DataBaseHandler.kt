@@ -273,7 +273,6 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
     }
 
 
-
     //team queries:
     fun createTeam(team: Team): Long {
         val db = this.writableDatabase
@@ -451,6 +450,7 @@ class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_N
             db.insert(TEAM_TABLE, null, contentValues)
         }
         db.close()
+        println("players populated")
     }
     @SuppressLint("Range")
     fun getAllTeamNames(): List<String> {
