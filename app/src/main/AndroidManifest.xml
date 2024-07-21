@@ -65,7 +65,7 @@
             android:name=".ChatActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ELeague">
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -133,6 +133,18 @@
             android:label="@string/app_name"
 
             android:theme="@style/Theme.ELeague">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MessageActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.myapplication.model.Message
-import com.myapplication.R
-import com.yourapp.ui.MessageAdapter
-
+import com.myapplication.ui.MessageAdapter
 
 class MessageActivity : AppCompatActivity() {
 
@@ -18,6 +16,9 @@ class MessageActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var messageInput: EditText
     private lateinit var sendButton: Button
+
+    private lateinit var db: DataBaseHandler
+    private var currentUser: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,11 @@ class MessageActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = messageAdapter
 
+        db = DataBaseHandler(this)
+
+        // Fetch the current user's username
+        currentUser = db.getPlayerDataByUsername("current_user_username")?.username
+
         sendButton.setOnClickListener {
             sendMessage()
         }
@@ -44,7 +50,8 @@ class MessageActivity : AppCompatActivity() {
             val message = Message(
                 id = generateMessageId(),
                 senderId = "currentUserId",  // Replace with actual sender ID
-                recipientId = "recipientId", // Replace with actual recipient ID
+                senderName = currentUser ?: "Unknown",  // Use the retrieved username
+                recipientId = "group",
                 content = content,
                 timestamp = System.currentTimeMillis()
             )

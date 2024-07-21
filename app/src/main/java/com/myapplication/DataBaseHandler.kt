@@ -44,7 +44,7 @@ val CALENDAR_FIXTURE_DATE_MONTH = "date_month"
 val CALENDAR_FIXTURE_DATE_YEAR = "date_year"
 
 
-class DataBaseHandler (context : Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1){
+class DataBaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1){
 
     override fun onCreate(db: SQLiteDatabase?) {
         val createPlayersTable =

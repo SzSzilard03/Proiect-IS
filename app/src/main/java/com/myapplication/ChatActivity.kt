@@ -19,17 +19,14 @@ class ChatActivity : ComponentActivity() {
         }
         val teamChat = findViewById<CardView>(R.id.team_btn)
         teamChat.setOnClickListener {
-            //showToast("ahoy")
-            val intent = Intent(this, MainPageActivity::class.java)// TeamChatActivity
+            val intent = Intent(this, MessageActivity::class.java)  // Start MessageActivity
             startActivity(intent)
-            finish()
         }
         val friends_btn = findViewById<CardView>(R.id.friends_btn)
         friends_btn.setOnClickListener {
             //showToast("ahoy")
-            val intent = Intent(this, MainPageActivity::class.java)// FriendsChatActivity
+            val intent = Intent(this, MessageActivity::class.java)  // Start MessageActivity
             startActivity(intent)
-            finish()
         }
     }
     private fun showToast(message: String) {
